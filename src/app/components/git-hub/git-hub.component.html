@@ -1,0 +1,33 @@
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="target" (keyup)="search(target)">
+</div>
+<div class="table-container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Repository Name</th>
+        <th scope="col">Owner</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let repo of data">
+        <td>
+          <img src="{{repo.owner.avatar_url}}" alt="repo.owner.login">
+        </td>
+        <td>
+          {{repo.name}}
+        </td>
+        <td>
+          {{repo.owner.login}}
+        </td>
+        <td>
+          <a href="https://github.com/{{repo.full_name}}">
+            <i class="fas fa-link"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
