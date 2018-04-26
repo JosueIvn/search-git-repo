@@ -1,3 +1,4 @@
+import { TimeFromNowPipe } from './pipes/date.pipe';
 import { HttpModule } from '@angular/http';
 import { GitHubServiceService } from './services/git-hub-service.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -11,7 +12,8 @@ import { GitHubComponent } from './components/git-hub/git-hub.component';
 @NgModule({
   declarations: [
     AppComponent,
-    GitHubComponent
+    GitHubComponent,
+    TimeFromNowPipe
   ],
   imports: [
     BrowserModule,
