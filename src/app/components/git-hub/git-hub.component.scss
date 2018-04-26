@@ -5,6 +5,21 @@ img {
 }
 
 .table-container {
-  max-height: 450px;
+  max-height: 350px;
   overflow: auto;
+  border: solid 1px #dee2e6;
+  border-radius: 2%;
+}
+
+.list-group {
+  margin-top: 50px;
+  height: 250px;
+  overflow: auto;
+  border: solid 1px #dee2e6;
+  border-radius: 2%;
+}
+
+.no-comments {
+  text-align: center;
+  padding: 50px;
 }

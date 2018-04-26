@@ -14,10 +14,17 @@ export class GitHubComponent implements OnInit {
   data: any[];
   target: string;
   reposList: any[];
+  selected: boolean;
+  comments: any[];
+  tempCommentUrl: string;
+  noComments: boolean;
 
   constructor(private gitHubService: GitHubServiceService) { }
 
   ngOnInit() {
+    this.comments = [];
+    this.selected = false;
+    this.noComments = false;
     this.getRepositories();
   }
 
@@ -25,15 +32,28 @@ export class GitHubComponent implements OnInit {
     this.gitHubService.getRepositories().subscribe(res => {
       this.data = res;
       this.reposList = res;
-      console.log(res);
     });
   }
 
-  search(param): void {
+  search(param: string): void {
     this.data = this.reposList.filter((item: any) => {
       return item.name.includes(param);
     });
-    console.log(param);
+  }
+
+  showComments(repo: any): void {
+    if (this.tempCommentUrl !== repo) {
+      this.selected = true;
+      this.tempCommentUrl = repo;
+      this.gitHubService.getComments(repo).subscribe(res => {
+        this.comments = res;
+        this.noComments = this.comments.length === 0;
+        console.log(this.comments);
+      });
+    } else {
+      this.selected = false;
+      this.tempCommentUrl = null;
+    }
   }
 
 }
