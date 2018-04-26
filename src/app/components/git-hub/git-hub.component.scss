@@ -1,3 +1,10 @@
+@mixin container() {
+  overflow: auto;
+  border: solid 1px #dee2e6;
+  border-radius: 2%;
+  resize: vertical;
+}
+
 img {
   border-radius: 50%;
   width: 30px;
@@ -5,17 +12,13 @@ img {
 }
 
 .table-container {
-  max-height: 350px;
-  overflow: auto;
-  border: solid 1px #dee2e6;
-  border-radius: 2%;
+  @include container;
+  height: 350px;
 }
 
 .list-group {
+  @include container;
   height: 300px;
-  overflow: auto;
-  border: solid 1px #dee2e6;
-  border-radius: 2%;
 }
 
 .no-comments {
