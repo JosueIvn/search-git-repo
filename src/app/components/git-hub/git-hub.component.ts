@@ -20,6 +20,7 @@ export class GitHubComponent implements OnInit {
   noComments: boolean;
   gitHubUrl: string;
   selectedRepo: string[];
+  gitRepo: any;
 
   constructor(private gitHubService: GitHubServiceService) { }
 
@@ -75,6 +76,16 @@ export class GitHubComponent implements OnInit {
    */
   resetSearch(): void {
     this.target = '';
+  }
+
+  /**
+   * Search for specific repo
+   * @param param {string}
+   */
+  searchRepo(param): any {
+    this.gitHubService.gitSearch(param).subscribe(res => {
+      this.data = res.items;
+    });
   }
 
 }

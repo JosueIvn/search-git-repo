@@ -1,5 +1,6 @@
 <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="target" (keyup)="search(target)" (keydown.esc)="resetSearch()">
+  <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="target" (keyup)="search(target)" (keydown.esc)="resetSearch()"
+    (keydown.enter)="searchRepo(target)">
 </div>
 <div class="table-container">
   <table class="table table-striped">
