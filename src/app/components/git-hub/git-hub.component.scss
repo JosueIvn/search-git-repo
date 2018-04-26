@@ -1,7 +1,7 @@
 img {
   border-radius: 50%;
   width: 30px;
-  height: auto;
+  height: 30px;
 }
 
 .table-container {
@@ -12,7 +12,6 @@ img {
 }
 
 .list-group {
-  margin-top: 50px;
   height: 250px;
   overflow: auto;
   border: solid 1px #dee2e6;
@@ -21,5 +20,9 @@ img {
 
 .no-comments {
   text-align: center;
-  padding: 50px;
+  padding: 20px;
+}
+
+.comments-container {
+  margin-top: 50px;  
 }
