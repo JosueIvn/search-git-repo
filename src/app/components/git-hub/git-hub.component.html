@@ -1,5 +1,5 @@
 <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="target" (keyup)="search(target)">
+  <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="target" (keyup)="search(target)" (keydown.esc)="resetSearch()">
 </div>
 <div class="table-container">
   <table class="table table-striped">
@@ -35,7 +35,7 @@
 </div>
 
 <div *ngIf="selected" class="comments-container">
-  <h3>Comments on this repo:
+  <h3 *ngIf="selectedRepo">Comments on {{selectedRepo[1]}}:
     <span class="badge badge-secondary">{{comments.length}}</span>
   </h3>
   <div class="list-group">
@@ -50,9 +50,9 @@
       </div>
     </div>
     <a href="#" class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let comment of comments">
-      <img src="{{comment.user.avatar_url}}" alt="repo.owner.login">
+      <img *ngIf="comment.user" src="{{comment.user.avatar_url}}">
       <div class="d-flex w-100 justify-content-between">
-        <a href="{{gitHubUrl + comment.user.login}}">
+        <a *ngIf="comment.user" href="{{gitHubUrl + comment.user.login}}">
           <h5 class="mb-1">{{comment.user ? comment.user.login : "No User"}}</h5>
         </a>
         <small class="text-muted">{{comment.created_at | date:'dd/MM/yyyy'}}</small>

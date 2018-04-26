@@ -19,6 +19,7 @@ export class GitHubComponent implements OnInit {
   tempCommentUrl: string;
   noComments: boolean;
   gitHubUrl: string;
+  selectedRepo: string[];
 
   constructor(private gitHubService: GitHubServiceService) { }
 
@@ -30,6 +31,9 @@ export class GitHubComponent implements OnInit {
     this.getRepositories();
   }
 
+  /**
+   * Gets initial array with repos info
+   */
   getRepositories() {
     this.gitHubService.getRepositories().subscribe(res => {
       this.data = res;
@@ -37,14 +41,23 @@ export class GitHubComponent implements OnInit {
     });
   }
 
+  /**
+   * Filter the repos array returning a list
+   * @param param {string}
+   */
   search(param: string): void {
     this.data = this.reposList.filter((item: any) => {
       return item.name.includes(param);
     });
   }
 
-  showComments(repo: any): void {
+  /**
+   * Calls the comments service and set variables to show comments info
+   * @param repo {string}
+   */
+  showComments(repo: string): void {
     if (this.tempCommentUrl !== repo) {
+      this.selectedRepo = repo.split('/');
       this.selected = true;
       this.tempCommentUrl = repo;
       this.gitHubService.getComments(repo).subscribe(res => {
@@ -55,6 +68,13 @@ export class GitHubComponent implements OnInit {
       this.selected = false;
       this.tempCommentUrl = null;
     }
+  }
+
+  /**
+   * Sets search target to its initial value
+   */
+  resetSearch(): void {
+    this.target = '';
   }
 
 }
